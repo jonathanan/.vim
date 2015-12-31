@@ -11,7 +11,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
-Plugin 'jisaacks/GitGutter'
+Plugin 'airblade/vim-gitgutter'
 call vundle#end() 
 
 filetype plugin indent on
