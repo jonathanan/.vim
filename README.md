@@ -24,7 +24,7 @@ Plugins:
 
 Install plugins by cloning the repository under your home directory
 ```
-git clone https://github.com/jonathanan/.vim.git ~/.vim
+git clone --recursive https://github.com/jonathanan/.vim.git ~/.vim
 vim +PluginInstall +qall
 ```
 

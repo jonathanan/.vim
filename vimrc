@@ -20,7 +20,6 @@ call vundle#end()
 filetype plugin indent on
 " Install with :PluginInstall
 
-
 " ---Syntastic plugin---
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -32,7 +31,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " ---Nerdtree plugin---
-map <F1> :NERDTreeToggle<CR>
+"map <F1> :NERDTreeToggle<CR>
 "Toggle with I
 let NERDTreeShowHidden=1
 "Auto open NERDTree if vim starts up with no files specified
@@ -42,10 +41,10 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " ---GitGuttter plugin---
-map <F2> :GitGutterToggle<CR>
+"map <F2> :GitGutterToggle<CR>
 
 " ---ctrlp.vim plugin---
-let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_map = '<F4>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 
@@ -53,14 +52,18 @@ let g:ctrlp_working_path_mode = 'ra'
 " Options
 " -------------
 
+" ---F<N> Mappings---
+map <F1> :NERDTreeToggle<CR>
+map <F2> :GitGutterToggle<CR>
+nmap <F3> :set invnumber<CR>:set invrelativenumber<CR>
+let g:ctrlp_map = '<F4>'
+nnoremap <F5> :buffers<CR>:buffer<Space>
+
 " Set Spacing
 set tabstop=2
 set softtabstop=2
 set bs=2
 set expandtab
-
-" Set Numbers
-nmap <C-N> :set invnumber<CR>:set invrelativenumber<CR>
 
 imap jj <Esc>
 " Map ctrl-movement keys to window switching
@@ -68,6 +71,7 @@ map <C-k> <C-w><Up>
 map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
-" Switch to alternate file
-map <C-Tab> :bnext<cr>
-map <C-S-Tab> :bprevious<cr>
+" Buffers
+map <C-n> :bnext<cr>
+map <C-p> :bprevious<cr>
+map <C-b> :b#<cr>
