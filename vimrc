@@ -14,6 +14,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'ctrlpvim/ctrlp.vim'
 call vundle#end() 
 
 filetype plugin indent on
@@ -43,10 +44,15 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " ---GitGuttter plugin---
 map <F2> :GitGutterToggle<CR>
 
+" ---ctrlp.vim plugin---
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+
 " -------------
 " Options
 " -------------
-"
+
 " Set Spacing
 set tabstop=2
 set softtabstop=2

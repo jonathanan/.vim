@@ -16,6 +16,9 @@ Plugins:
 * [vim-gitgutter] (https://github.com/airblade/vim-gitgutter)
   * git diff while editing
   * ```:help gitgutter```
+* [ctrlp.vim] (https://github.com/ctrlpvim/ctrlp.vim)
+  * full path fuzzy file, buffer, mur, tag, ... finder for Vim
+  * ```:help ctrlp-options```
 
 # Configure
 
