@@ -52,18 +52,47 @@ let g:ctrlp_working_path_mode = 'ra'
 " Options
 " -------------
 
+syntax enable
+
+set autoindent
+set autoread
+set backspace=indent,eol,start
+set clipboard^=unnamed
+set cursorline
+set expandtab
+set fileformats=unix,dos
+set foldcolumn=1
+set formatoptions=tcroqnj
+set incsearch
+set invnumber
+set invrelativenumber
+set laststatus=2
+set lazyredraw
+set list listchars=tab:\ \ ,precedes:«,extends:»
+set nowrap
+set ruler
+set scroll=8
+set scrolloff=8
+set shiftwidth=4
+set showtabline=1
+set sidescroll=1
+set sidescrolloff=12
+set smartindent
+set softtabstop=4
+set splitright
+set synmaxcol=1024
+set tabstop=4
+set textwidth=80
+set timeoutlen=500
+set virtualedit=block
+set wildmenu
+
 " ---F<N> Mappings---
 map <F1> :NERDTreeToggle<CR>
 map <F2> :GitGutterToggle<CR>
 nmap <F3> :set invnumber<CR>:set invrelativenumber<CR>
 let g:ctrlp_map = '<F4>'
 nnoremap <F5> :buffers<CR>:buffer<Space>
-
-" Set Spacing
-set tabstop=2
-set softtabstop=2
-set bs=2
-set expandtab
 
 imap jj <Esc>
 " Map ctrl-movement keys to window switching
@@ -75,3 +104,12 @@ map <C-h> <C-w><Left>
 map <C-n> :bnext<cr>
 map <C-p> :bprevious<cr>
 map <C-b> :b#<cr>
+
+" Yank to the end of the line instead of the entire line
+map Y y$
+
+" Insert line break in normal mode
+nnoremap <CR> i<CR><ESC>
+
+" Insert a space in normal mode
+nnoremap <space> i<space><ESC>l
