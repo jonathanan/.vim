@@ -11,6 +11,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
@@ -93,6 +94,9 @@ map <F2> :GitGutterToggle<CR>
 nmap <F3> :set invnumber<CR>:set invrelativenumber<CR>
 let g:ctrlp_map = '<F4>'
 nnoremap <F5> :buffers<CR>:buffer<Space>
+
+" Nerd commenter map - for comment toggling
+map <silent> - <leader>c<space>
 
 imap jj <Esc>
 " Map ctrl-movement keys to window switching

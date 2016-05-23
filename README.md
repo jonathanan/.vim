@@ -7,6 +7,9 @@ Plugins:
 * [Nerdtree] (https://github.com/scrooloose/nerdtree) 
   * File tree explorer
   * ```:help nerdtree```
+* [Nerdcommenter] (https://github.com/scrooloose/nerdcommenter) 
+  * Easier commenting
+  * ```:help nerdcommenter```
 * [Syntastic] (https://github.com/scrooloose/syntastic)
   * Syntax checking
   * ```:help syntastic```
