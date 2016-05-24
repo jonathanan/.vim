@@ -4,10 +4,10 @@ Plugins:
 * [Vundle] (https://github.com/VundleVim/Vundle.vim)
   * Plugin Manager
   * ```:help vundle```
-* [Nerdtree] (https://github.com/scrooloose/nerdtree) 
+* [Nerdtree] (https://github.com/scrooloose/nerdtree)
   * File tree explorer
   * ```:help nerdtree```
-* [Nerdcommenter] (https://github.com/scrooloose/nerdcommenter) 
+* [Nerdcommenter] (https://github.com/scrooloose/nerdcommenter)
   * Easier commenting
   * ```:help nerdcommenter```
 * [Syntastic] (https://github.com/scrooloose/syntastic)
@@ -22,6 +22,9 @@ Plugins:
 * [ctrlp.vim] (https://github.com/ctrlpvim/ctrlp.vim)
   * full path fuzzy file, buffer, mur, tag, ... finder for Vim
   * ```:help ctrlp-options```
+* [vim-better-whitespace] (https://github.com/ntpeters/vim-better-whitespace)
+  * Highlight and delete trailing whitespaces
+  * ```:help better-whitespace```
 
 # Configure
 

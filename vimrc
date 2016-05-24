@@ -1,9 +1,11 @@
+set nocompatible
+set encoding=utf-8
+let mapleader = ';'
+
 " ----------------------
 " Set up Vundle plugins
 " ----------------------
 
-set nocompatible
-set encoding=utf-8
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
@@ -16,7 +18,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ctrlpvim/ctrlp.vim'
-call vundle#end() 
+Plugin 'ntpeters/vim-better-whitespace'
+call vundle#end()
 
 filetype plugin indent on
 " Install with :PluginInstall
@@ -37,7 +40,7 @@ let g:syntastic_check_on_wq = 0
 let NERDTreeShowHidden=1
 "Auto open NERDTree if vim starts up with no files specified
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif 
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "Close vim if NERDTree is only window left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -48,6 +51,11 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "let g:ctrlp_map = '<F4>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
+
+" ---Better Whitespace plugin---
+let g:strip_whitespace_on_save = 1
+let g:better_whitespace_filetypes_blacklist = ['markdown']
+command! SWS :StripWhitespace
 
 " -------------
 " Options
@@ -99,6 +107,14 @@ nnoremap <F5> :buffers<CR>:buffer<Space>
 map <silent> - <leader>c<space>
 
 imap jj <Esc>
+
+" Faster saving
+ nmap <silent> <leader>w :w<CR>
+
+" Faster quitting
+nmap <silent> <leader>q :q<CR>
+nmap <silent> <leader>Q :q!<CR
+
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
 map <C-j> <C-w><Down>
@@ -117,3 +133,25 @@ nnoremap <CR> i<CR><ESC>
 
 " Insert a space in normal mode
 nnoremap <space> i<space><ESC>l
+
+" Toggle word highlighting
+nmap <silent> <leader>hw :call <SID>hlwordon()<CR>
+nmap <silent> <leader>hW :call <SID>hlwordoff()<CR>
+
+function! s:hlwordon()
+    call s:hlwordoff()
+    let w:hlword = expand('<cword>')
+    let w:hlwordmatch = matchadd('Search', '\<'. w:hlword .'\>' )
+
+    " Set the search register so that n and N can be used to find additional
+    " occurrences of the word.
+    let @/ = '\<'. w:hlword .'\>'
+endfunction
+
+function! s:hlwordoff()
+    if exists('w:hlwordmatch')
+        call matchdelete( w:hlwordmatch )
+        unlet w:hlwordmatch
+        unlet w:hlword
+    endif
+endfunction
