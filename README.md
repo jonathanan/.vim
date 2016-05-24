@@ -25,6 +25,9 @@ Plugins:
 * [vim-better-whitespace] (https://github.com/ntpeters/vim-better-whitespace)
   * Highlight and delete trailing whitespaces
   * ```:help better-whitespace```
+* [ag.vim] (https://github.com/rking/ag.vim)
+  * Silver Searcher for vim
+  * ```:help ag```
 
 # Configure
 

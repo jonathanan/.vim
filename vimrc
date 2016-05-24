@@ -19,6 +19,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'rking/ag.vim'
 call vundle#end()
 
 filetype plugin indent on
@@ -56,6 +57,9 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:strip_whitespace_on_save = 1
 let g:better_whitespace_filetypes_blacklist = ['markdown']
 command! SWS :StripWhitespace
+
+" ---ag.vim plugin---
+nnoremap <leader>a :Ag<Space>
 
 " -------------
 " Options
@@ -108,12 +112,16 @@ map <silent> - <leader>c<space>
 
 imap jj <Esc>
 
+" Move to the beginning/end of line
+nnoremap B ^
+nnoremap E $
+
 " Faster saving
  nmap <silent> <leader>w :w<CR>
 
 " Faster quitting
 nmap <silent> <leader>q :q<CR>
-nmap <silent> <leader>Q :q!<CR
+nmap <silent> <leader>Q :q!<CR>
 
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
@@ -133,6 +141,9 @@ nnoremap <CR> i<CR><ESC>
 
 " Insert a space in normal mode
 nnoremap <space> i<space><ESC>l
+
+" highlight last inserted text
+nnoremap gV `[v`]
 
 " Toggle word highlighting
 nmap <silent> <leader>hw :call <SID>hlwordon()<CR>
