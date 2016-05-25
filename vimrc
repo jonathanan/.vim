@@ -110,7 +110,9 @@ nnoremap <F5> :buffers<CR>:buffer<Space>
 " Nerd commenter map - for comment toggling
 map <silent> - <leader>c<space>
 
+" Faster Escape in normal/command mode
 imap jj <Esc>
+cmap jj <C-c>
 
 " Move to the beginning/end of line
 nnoremap B ^
@@ -166,3 +168,9 @@ function! s:hlwordoff()
         unlet w:hlword
     endif
 endfunction
+
+" Set folding options
+set foldlevelstart=10
+set foldnestmax=10
+set foldmethod=indent
+nnoremap , za
