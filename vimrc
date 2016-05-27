@@ -1,14 +1,35 @@
 " vim:foldmethod=marker:foldlevel=0
 " 'zR/zM' to open/close all folds, ',' or 'za' to toggle open/close a fold
 
-" F<N> Mappings {{{
+" Misc {{{
+set nocompatible
+set encoding=utf-8
+let mapleader = ';'
+set autoread
+set clipboard^=unnamed
+set wildmenu
 
+" Faster Escape in normal/command mode
+imap jj <Esc>
+cmap jj <C-c>
+
+" Map ctrl-movement keys to window switching
+map <C-k> <C-w><Up>
+map <C-j> <C-w><Down>
+map <C-l> <C-w><Right>
+map <C-h> <C-w><Left>
+" Buffers
+map <C-n> :bnext<cr>
+map <C-p> :bprevious<cr>
+map <C-b> :b#<cr>
+" }}}
+
+" F<N> Mappings {{{
 map <F1> :NERDTreeToggle<CR>
 map <F2> :GitGutterToggle<CR>
 nmap <F3> :set invnumber<CR>:set invrelativenumber<CR>
 let g:ctrlp_map = '<F4>'
 nnoremap <F5> :buffers<CR>:buffer<Space>
-
 " }}}
 
 " Searching {{{
@@ -78,35 +99,14 @@ nnoremap <space> i<space><ESC>l
 " Leader Shortcuts {{{
 " Faster saving
 nmap <silent> <leader>w :w<CR>
+nmap <silent> <leader>wa :wa<CR>
 
 " Faster quitting
 nmap <silent> <leader>q :q<CR>
 nmap <silent> <leader>Q :q!<CR>
+nmap <silent> <leader>qa :qa<CR>
 
 " More leader shortcuts in other sections...
-" }}}
-
-" Misc {{{
-set nocompatible
-set encoding=utf-8
-let mapleader = ';'
-set autoread
-set clipboard^=unnamed
-set wildmenu
-
-" Faster Escape in normal/command mode
-imap jj <Esc>
-cmap jj <C-c>
-
-" Map ctrl-movement keys to window switching
-map <C-k> <C-w><Up>
-map <C-j> <C-w><Down>
-map <C-l> <C-w><Right>
-map <C-h> <C-w><Left>
-" Buffers
-map <C-n> :bnext<cr>
-map <C-p> :bprevious<cr>
-map <C-b> :b#<cr>
 " }}}
 
 " Custom Functions {{{
