@@ -28,6 +28,10 @@ Plugins:
 * [ag.vim] (https://github.com/rking/ag.vim)
   * Silver Searcher for vim
   * ```:help ag```
+* [vim-sleuth] (https://github.com/tpope/vim-sleuth)
+  * Automatically adjusts `'shiftwdith'` and `'expandtab'` based on current file
+    or adjacent/parent files of the same type.
+  * ```:help sleuth```
 
 # Configure
 

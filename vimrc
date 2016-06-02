@@ -1,10 +1,10 @@
 " vim:foldmethod=marker:foldlevel=0
-" 'zR/zM' to open/close all folds, ',' or 'za' to toggle open/close a fold
+" 'zR/zM' to open/close all folds, '<leader>,' or 'za' to toggle open/close a fold
 
 " Misc {{{
 set nocompatible
 set encoding=utf-8
-let mapleader = ';'
+let mapleader = "\<Space>"
 set autoread
 set clipboard^=unnamed
 set wildmenu
@@ -38,9 +38,14 @@ set incsearch
 " Toggle word highlighting
 nmap <silent> <leader>hw :call <SID>hlwordon()<CR>
 nmap <silent> <leader>hW :call <SID>hlwordoff()<CR>
+
+" Search with '/', Replace with 'cs', <Esc>, Repeat search + replace with 'n.'
+vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
+    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+omap s :normal vs<CR>
 " }}}
 
-" UI Format{{{
+" UI Format {{{
 set fileformats=unix,dos
 set formatoptions=tcroqnj
 set laststatus=2
@@ -78,7 +83,7 @@ set foldcolumn=1
 set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=indent
-nnoremap , za
+nnoremap <leader>a za
 " }}}
 
 " Line Shortcuts {{{
@@ -92,8 +97,10 @@ map Y y$
 " Insert line break in normal mode
 nnoremap <CR> i<CR><ESC>
 
-" Insert a space in normal mode
-nnoremap <space> i<space><ESC>l
+" Automatically jump to end of pasted text
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
 " }}}
 
 " Leader Shortcuts {{{
@@ -105,6 +112,11 @@ nmap <silent> <leader>wa :wa<CR>
 nmap <silent> <leader>q :q<CR>
 nmap <silent> <leader>Q :q!<CR>
 nmap <silent> <leader>qa :qa<CR>
+
+" Enter visual line mode
+nmap <leader><leader> V
+
+nmap <silent> <leader>noh :noh<CR>
 
 " More leader shortcuts in other sections...
 " }}}
@@ -144,6 +156,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'rking/ag.vim'
+Plugin 'tpope/vim-sleuth'
 call vundle#end()
 
 filetype plugin indent on
@@ -194,7 +207,7 @@ command! SWS :StripWhitespace
 " }}}
 
 " ag.vim {{{
-nnoremap <leader>a :Ag<Space>
+nnoremap <leader>ag :Ag<Space>
 " }}}
 
 set modelines=1
