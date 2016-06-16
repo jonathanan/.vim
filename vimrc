@@ -101,6 +101,9 @@ nnoremap <CR> i<CR><ESC>
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
+
+" Jump to end of the current line in insert mode
+inoremap <C-e> <C-o>$
 " }}}
 
 " Leader Shortcuts {{{
@@ -117,6 +120,14 @@ nmap <silent> <leader>qa :qa<CR>
 nmap <leader><leader> V
 
 nmap <silent> <leader>noh :noh<CR>
+
+" Press 'qq' to record into q register, End recording with 'q', '<leader>.' to
+" play recording
+nnoremap <leader>. @q
+
+" Replace current word and all of its occurences
+nnoremap <leader>rc :%s/\<<C-r><C-w>\>/
+vnoremap <leader>rc y:%s/<C-r>"/
 
 " More leader shortcuts in other sections...
 " }}}
@@ -176,7 +187,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " nerdcommenter {{{
 " map - for comment toggling
-map <silent> - <leader>c<space>
+map <silent> = <leader>c<space>
 " }}}
 
 " syntastic {{{
