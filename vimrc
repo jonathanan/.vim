@@ -29,7 +29,6 @@ map <F1> :NERDTreeToggle<CR>
 map <F2> :GitGutterToggle<CR>
 nmap <F3> :set invnumber<CR>:set invrelativenumber<CR>
 let g:ctrlp_map = '<F4>'
-nnoremap <F5> :buffers<CR>:buffer<Space>
 " }}}
 
 " Searching {{{
@@ -129,6 +128,9 @@ nnoremap <leader>. @q
 nnoremap <leader>rc :%s/\<<C-r><C-w>\>/
 vnoremap <leader>rc y:%s/<C-r>"/
 
+" Easier editing of the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+
 " More leader shortcuts in other sections...
 " }}}
 
@@ -209,6 +211,13 @@ let g:syntastic_check_on_wq = 0
 "let g:ctrlp_map = '<F4>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
+nmap <silent> <leader>b :CtrlPBuffer<CR>
+"Ignore certain files and also files in listed .gitignore
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ }
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 " }}}
 
 " better-whitespace {{{
