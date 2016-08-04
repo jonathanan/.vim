@@ -29,6 +29,8 @@ map <F1> :NERDTreeToggle<CR>
 map <F2> :GitGutterToggle<CR>
 nmap <F3> :set invnumber<CR>:set invrelativenumber<CR>
 let g:ctrlp_map = '<F4>'
+" <F5> Once CtrlP is open: purge the cache for the current directory to get new files, remove deleted files and apply new ignore options.
+nmap <F6> :ToggleStripWhitespaceOnSave<CR>
 " }}}
 
 " Searching {{{
@@ -134,6 +136,20 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 " More leader shortcuts in other sections...
 " }}}
 
+" Autogroups {{{
+augroup configgroup
+    autocmd!
+    autocmd FileType ruby setlocal tabstop=2
+    autocmd FileType ruby setlocal shiftwidth=2
+    autocmd FileType ruby setlocal softtabstop=2
+    autocmd FileType ruby setlocal commentstring=#\ %s
+    autocmd FileType python setlocal commentstring=#\ %s
+    autocmd BufEnter *.sh setlocal tabstop=2
+    autocmd BufEnter *.sh setlocal shiftwidth=2
+    autocmd BufEnter *.sh setlocal softtabstop=2
+augroup END
+" }}}
+
 " Custom Functions {{{
 function! s:hlwordon()
     call s:hlwordoff()
@@ -178,17 +194,20 @@ filetype plugin indent on
 
 " nerdtree {{{
 "map <F1> :NERDTreeToggle<CR>
+map <leader>n <F1>
 "Toggle with I
 let NERDTreeShowHidden=1
+
 "Auto open NERDTree if vim starts up with no files specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 "Close vim if NERDTree is only window left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " }}}
 
 " nerdcommenter {{{
-" map - for comment toggling
+" map = for comment toggling
 map <silent> = <leader>c<space>
 " }}}
 
@@ -209,18 +228,36 @@ let g:syntastic_check_on_wq = 0
 
 " ctrlp.vim {{{
 "let g:ctrlp_map = '<F4>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
+nmap <leader>p <F4>
 nmap <silent> <leader>b :CtrlPBuffer<CR>
-"Ignore certain files and also files in listed .gitignore
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ }
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_working_path_mode = 'ra'
+
+" Don't jump to already open window. This is annoying if you are maintaining several Tab workspaces and want to open two windows into the same file.
+let g:ctrlp_switch_buffer = 0
+
+if executable('ag')
+    " Use ag in CtrlP for listing files. Respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+    " ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
+
+    " g:ctrlp_custom_ignore does not work, use .agignore
+    " g:ctrlp_show_hidden does not work
+else
+    "Fall back to using git ls-files if Ag is not available
+    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+    " Ignore certain files
+    let g:ctrlp_custom_ignore = {
+        \ 'dir':  '\v[\/]\.(git)$',
+        \ 'file': '\v\.(exe|so|dll)$',
+        \ }
+endif
 " }}}
 
 " better-whitespace {{{
+" nmap <F6> :ToggleStripWhitespaceOnSave<CR>
 let g:strip_whitespace_on_save = 1
 let g:better_whitespace_filetypes_blacklist = ['markdown']
 command! SWS :StripWhitespace
