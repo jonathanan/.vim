@@ -186,6 +186,10 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'rking/ag.vim'
 Plugin 'tpope/vim-sleuth'
+Plugin 'ervandew/supertab'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 call vundle#end()
 
 filetype plugin indent on
@@ -265,6 +269,18 @@ command! SWS :StripWhitespace
 
 " ag.vim {{{
 nnoremap <leader>ag :Ag<Space>
+" }}}
+
+" YouCompleteMe {{{
+let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+" }}}
+
+" ultisnips {{{
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 " }}}
 
 set modelines=1
