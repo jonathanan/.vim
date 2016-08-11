@@ -32,6 +32,9 @@ Plugins:
   * Automatically adjusts `'shiftwdith'` and `'expandtab'` based on current file
     or adjacent/parent files of the same type.
   * ```:help sleuth```
+* [YouCompleteMe] (https://github.com/Valloric/YouCompleteMe)
+  * A code-completion engine for Vim
+  * ```:help ycm```
 
 # Configure
 

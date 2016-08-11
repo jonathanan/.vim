@@ -1,4 +1,3 @@
-colorscheme koehler
 set spell
 set guioptions-=T " Disable the tool bar.
 set guioptions-=m " Disable the menu bar.

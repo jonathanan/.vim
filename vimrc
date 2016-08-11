@@ -77,6 +77,7 @@ set virtualedit=block
 " Colors {{{
 syntax enable
 set cursorline
+"colorscheme whitenight
 " }}}
 
 " Folding {{{
@@ -132,6 +133,14 @@ vnoremap <leader>rc y:%s/<C-r>"/
 
 " Easier editing of the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
+
+" Set the current working directory to the directory of the opened file
+nmap <silent> <leader>cd :lcd %:p:h<CR>:pwd<CR>
+
+" Open the current working directory in a file explorer
+if has('win32')
+    nmap <silent> <leader>od :exe '!start explorer "'. shellescape(getcwd()) .'"'<CR>
+endif
 
 " More leader shortcuts in other sections...
 " }}}
@@ -190,6 +199,7 @@ Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'jasonwhite/vim-whitenight'
 call vundle#end()
 
 filetype plugin indent on
@@ -281,6 +291,10 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+" }}}
+
+" vim-whitenight {{{
+colorscheme whitenight
 " }}}
 
 set modelines=1
