@@ -8,6 +8,7 @@ let mapleader = "\<Space>"
 set autoread
 set clipboard^=unnamed
 set wildmenu
+set hidden
 
 " Faster Escape in normal/command mode
 imap jj <Esc>
@@ -18,10 +19,6 @@ map <C-k> <C-w><Up>
 map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
-" Buffers
-map <C-n> :bnext<cr>
-map <C-p> :bprevious<cr>
-map <C-b> :b#<cr>
 " }}}
 
 " F<N> Mappings {{{
@@ -109,6 +106,12 @@ inoremap <C-e> <C-o>$
 " }}}
 
 " Leader Shortcuts {{{
+" Buffers
+nmap <leader>t :enew<CR>
+nmap <leader>k :bnext<CR>
+nmap <leader>j :bprevious<CR>
+nmap <leader>d :bp <BAR> bd #<CR>
+
 " Faster saving
 nmap <silent> <leader>w :w<CR>
 nmap <silent> <leader>wa :wa<CR>
@@ -208,7 +211,7 @@ filetype plugin indent on
 
 " nerdtree {{{
 "map <F1> :NERDTreeToggle<CR>
-map <leader>n <F1>
+map <leader>nt <F1>
 "Toggle with I
 let NERDTreeShowHidden=1
 
@@ -234,6 +237,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['python', 'python3']
+
+autocmd BufRead *.py    let b:syntastic_python_python_exec = syntastic#util#parseShebang()['exe']
 " }}}
 
 " vim-gitgutter {{{
