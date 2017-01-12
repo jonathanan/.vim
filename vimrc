@@ -28,6 +28,8 @@ nmap <F3> :set invnumber<CR>:set invrelativenumber<CR>
 let g:ctrlp_map = '<F4>'
 " <F5> Once CtrlP is open: purge the cache for the current directory to get new files, remove deleted files and apply new ignore options.
 nmap <F6> :ToggleStripWhitespaceOnSave<CR>
+nnoremap <F7> :set invpaste paste?<CR>
+set pastetoggle=<F7>
 " }}}
 
 " Searching {{{
@@ -41,6 +43,9 @@ nmap <silent> <leader>hW :call <SID>hlwordoff()<CR>
 vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
     \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
 omap s :normal vs<CR>
+
+" Search selected text
+vnoremap <leader>/ y/<C-R>"<CR>
 " }}}
 
 " UI Format {{{
@@ -110,7 +115,7 @@ inoremap <C-e> <C-o>$
 nmap <leader>t :enew<CR>
 nmap <leader>k :bnext<CR>
 nmap <leader>j :bprevious<CR>
-nmap <leader>d :bp <BAR> bd #<CR>
+nmap <leader>x :bp <BAR> bd #<CR>
 
 " Faster saving
 nmap <silent> <leader>w :w<CR>
@@ -131,8 +136,8 @@ nmap <silent> <leader>noh :noh<CR>
 nnoremap <leader>. @q
 
 " Replace current word and all of its occurences
-nnoremap <leader>rc :%s/\<<C-r><C-w>\>/
-vnoremap <leader>rc y:%s/<C-r>"/
+nnoremap <leader>rw :%s/\<<C-r><C-w>\>/
+vnoremap <leader>rw y:%s/<C-r>"/
 
 " Easier editing of the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -144,6 +149,9 @@ nmap <silent> <leader>cd :lcd %:p:h<CR>:pwd<CR>
 if has('win32')
     nmap <silent> <leader>od :exe '!start explorer "'. shellescape(getcwd()) .'"'<CR>
 endif
+
+" Toggle diff
+nmap <silent> <leader>d :if &diff<bar>diffoff<bar>else<bar>diffthis<bar>endif<CR>
 
 " More leader shortcuts in other sections...
 " }}}
@@ -251,6 +259,7 @@ autocmd BufRead *.py    let b:syntastic_python_python_exec = syntastic#util#pars
 nmap <leader>p <F4>
 nmap <silent> <leader>b :CtrlPBuffer<CR>
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_show_hidden = 1
 
 " Don't jump to already open window. This is annoying if you are maintaining several Tab workspaces and want to open two windows into the same file.
 let g:ctrlp_switch_buffer = 0
